@@ -33,15 +33,17 @@
             txtDllPath = new Label();
             lstClients = new ListBox();
             txtResult = new TextBox();
+            btnSelectDataFile = new Button();
+            txtDataFilePath = new Label();
             SuspendLayout();
             // 
             // btnExecute
             // 
-            btnExecute.Location = new Point(36, 189);
+            btnExecute.Location = new Point(36, 229);
             btnExecute.Name = "btnExecute";
             btnExecute.Size = new Size(179, 29);
             btnExecute.TabIndex = 0;
-            btnExecute.Text = "Start";
+            btnExecute.Text = "Запуск тестов";
             btnExecute.UseVisualStyleBackColor = true;
             btnExecute.Click += btnExecute_Click;
             // 
@@ -67,24 +69,46 @@
             // lstClients
             // 
             lstClients.FormattingEnabled = true;
-            lstClients.Location = new Point(36, 61);
+            lstClients.Location = new Point(36, 104);
             lstClients.Name = "lstClients";
             lstClients.Size = new Size(738, 104);
             lstClients.TabIndex = 3;
             // 
             // txtResult
             // 
-            txtResult.Location = new Point(36, 290);
+            txtResult.Location = new Point(36, 282);
             txtResult.Multiline = true;
             txtResult.Name = "txtResult";
-            txtResult.Size = new Size(752, 181);
+            txtResult.ScrollBars = ScrollBars.Vertical;
+            txtResult.Size = new Size(750, 312);
             txtResult.TabIndex = 4;
+            // 
+            // btnSelectDataFile
+            // 
+            btnSelectDataFile.Location = new Point(39, 59);
+            btnSelectDataFile.Name = "btnSelectDataFile";
+            btnSelectDataFile.Size = new Size(176, 29);
+            btnSelectDataFile.TabIndex = 6;
+            btnSelectDataFile.Text = "Select Data File";
+            btnSelectDataFile.UseVisualStyleBackColor = true;
+            btnSelectDataFile.Click += btnSelectDataFile_Click;
+            // 
+            // txtDataFilePath
+            // 
+            txtDataFilePath.AutoSize = true;
+            txtDataFilePath.Location = new Point(268, 63);
+            txtDataFilePath.Name = "txtDataFilePath";
+            txtDataFilePath.Size = new Size(50, 20);
+            txtDataFilePath.TabIndex = 7;
+            txtDataFilePath.Text = "label1";
             // 
             // MasterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 483);
+            ClientSize = new Size(800, 606);
+            Controls.Add(txtDataFilePath);
+            Controls.Add(btnSelectDataFile);
             Controls.Add(txtResult);
             Controls.Add(lstClients);
             Controls.Add(txtDllPath);
@@ -92,6 +116,7 @@
             Controls.Add(btnExecute);
             Name = "MasterForm";
             Text = "Form1";
+            FormClosing += MasterForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,5 +128,7 @@
         private Label txtDllPath;
         private ListBox lstClients;
         private TextBox txtResult;
+        private Button btnSelectDataFile;
+        private Label txtDataFilePath;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using DistributedIntegration.Slave;
 
-string masterIp = "192.168.31.46";
+string masterIp = "127.0.0.1";
 int masterPort = 12345;
 
 var slave = new Slave(masterIp, masterPort);

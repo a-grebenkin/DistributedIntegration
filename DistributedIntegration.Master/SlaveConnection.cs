@@ -12,6 +12,7 @@ namespace DistributedIntegration.Master
     public class SlaveConnection
     {
         private TcpClient client;
+        private NetworkStream stream;
         private StreamWriter writer;
         private StreamReader reader;
 
@@ -20,9 +21,28 @@ namespace DistributedIntegration.Master
         public SlaveConnection(TcpClient client)
         {
             this.client = client;
-            var stream = client.GetStream();
+            stream = client.GetStream();
             writer = new StreamWriter(stream);
             reader = new StreamReader(stream);
+        }
+
+        public async Task<bool> IsConnectedAsync()
+        {
+            if (!client.Connected)
+                return false;
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    client.Client.Send(new byte[1], 0, 0);
+                });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task SendJobAsync(Job job)
@@ -42,6 +62,7 @@ namespace DistributedIntegration.Master
         {
             writer.Close();
             reader.Close();
+            stream.Close();
             client.Close();
         }
     }
